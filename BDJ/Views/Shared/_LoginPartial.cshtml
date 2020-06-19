@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BDJ.Data
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<h1></h1>
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <h2>
+            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            |
+            Users
+            |
+            Lines
+            |
+            Trains
+            |
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </h2>
+    }
+    else
+    {
+        <h2 class="text-center">
+            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            |
+            <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+            |
+            <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </h2>
+    }
+</ul>

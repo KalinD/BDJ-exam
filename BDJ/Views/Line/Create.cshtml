@@ -1,0 +1,63 @@
+﻿@model BDJ.Models.LineCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="text-center">
+    <h2>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        |
+        <a asp-area="" asp-controller="User" asp-action="Index">Users</a>
+        |
+        <a asp-area="" asp-controller="Line" asp-action="Index">Lines</a>
+        |
+        <a asp-area="" asp-controller="Train" asp-action="Index">Trains</a>
+        |
+        <form id="logoutForm" style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button class="underline-button" style="background: none; border: 0px solid white; color: #0366d6; font-weight: 500;" id="logout" type="submit"><a>Logout</a></button>
+        </form>
+    </h2>
+</div>
+
+<div style="width: 50%; border: 1px solid black; margin: auto">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label style="margin-left: 25%" asp-for="Date" class="control-label"></label>
+            <input style="width: 50%; margin: auto" asp-for="Date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label style="margin-left: 25%" asp-for="DepartureTime" class="control-label"></label>
+            <input style="width: 50%; margin: auto" asp-for="DepartureTime" class="form-control" />
+            <span asp-validation-for="DepartureTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label style="margin-left: 25%" asp-for="ArrivalTime" class="control-label"></label>
+            <input style="width: 50%; margin: auto" asp-for="ArrivalTime" class="form-control" />
+            <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label style="margin-left: 25%" asp-for="Departure" class="control-label"></label>
+            <input style="width: 50%; margin: auto" asp-for="Departure" class="form-control" />
+            <span asp-validation-for="Departure" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label style="margin-left: 25%" asp-for="Destination" class="control-label"></label>
+            <input style="width: 50%; margin: auto" asp-for="Destination" class="form-control" />
+            <span asp-validation-for="Destination" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label style="margin-left: 25%" asp-for="TrainId">Train</label>
+            <select asp-for="TrainId">
+                @foreach (var train in Model.Trains)
+                {
+                    <option value="@train.Id">@train.Number</option>
+                }
+            </select>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" value="Save" />
+        </div>
+    </form>
+</div>

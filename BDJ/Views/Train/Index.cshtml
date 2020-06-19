@@ -1,0 +1,55 @@
+﻿@model TrainsIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h2>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        |
+        <a asp-area="" asp-controller="User" asp-action="Index">Users</a>
+        |
+        <a asp-area="" asp-controller="Line" asp-action="Index">Lines</a>
+        |
+        Trains
+        |
+        <form id="logoutForm" style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button class="underline-button" style="background: none; border: 0px solid white; color: #0366d6; font-weight: 500;" id="logout" type="submit"><a>Logout</a></button>
+        </form>
+    </h2>
+</div>
+
+<div>
+    <a asp-area="" asp-controller="Train" asp-action="Create">New</a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Fast</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TrainIndexViewModel train in Model.Trains)
+        {
+            <tr>
+                <td>@train.Number</td>
+                <td>@train.Capacity</td>
+                @if (train.IsFast)
+                {
+                    <td>true</td>
+                }
+                else
+                {
+                    <td>false</td>
+                }
+                <td>
+                    <a asp-action="Edit" asp-route-id="@train.TrainId">edit</a>
+                    <a asp-action="Delete" asp-route-id="@train.TrainId">delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

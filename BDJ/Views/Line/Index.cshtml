@@ -1,0 +1,53 @@
+﻿@model LinesIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="text-center">
+    <h2>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        |
+        <a asp-area="" asp-controller="User" asp-action="Index">Users</a>
+        |
+        Lines
+        |
+        <a asp-area="" asp-controller="Train" asp-action="Index">Trains</a>
+        |
+        <form id="logoutForm" style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button class="underline-button" style="background: none; border: 0px solid white; color: #0366d6; font-weight: 500;" id="logout" type="submit"><a>Logout</a></button>
+        </form>
+    </h2>
+</div>
+
+<div>
+    <a asp-area="" asp-controller="Line" asp-action="Create">New</a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Train</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (LineIndexViewModel line in Model.Lines)
+        {
+            <tr>
+                <td>@line.TrainNumber</td>
+                <td>@line.Departure</td>
+                <td>@line.Destination</td>
+                <td>@line.DepartureTime</td>
+                <td>@line.ArrivalTime</td>
+                <td>@line.Date</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@line.LineId">edit</a>
+                    <a asp-action="Delete" asp-route-id="@line.LineId">delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

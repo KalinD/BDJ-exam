@@ -1,0 +1,47 @@
+﻿@model BDJ.Models.UserEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="text-center">
+    <h2>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        |
+        Users
+        |
+        <a asp-area="" asp-controller="Line" asp-action="Index">Lines</a>
+        |
+        <a asp-area="" asp-controller="Train" asp-action="Index">Trains</a>
+        |
+        <form id="logoutForm" style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button class="underline-button" style="background: none; border: 0px solid white; color: #0366d6; font-weight: 500;" id="logout" type="submit"><a>Logout</a></button>
+        </form>
+    </h2>
+</div>
+
+<div style="border: 1px solid black; margin: auto; width: 50%">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label style="margin-left: 25%" asp-for="UserName" class="control-label"></label>
+            <input style="width: 50%; margin: auto" asp-for="UserName" value="@Model.UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label style="margin-left: 25%" asp-for="FirstName" class="control-label"></label>
+            <input style="width: 50%; margin: auto" asp-for="FirstName" value="@Model.FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label style="margin-left: 25%" asp-for="LastName" class="control-label"></label>
+            <input style="width: 50%; margin: auto" asp-for="LastName" value="@Model.LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" value="Save" />
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

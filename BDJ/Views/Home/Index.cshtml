@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BDJ.Data
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="text-center">
+            <h2>
+                Home
+                |
+                <a asp-area="" asp-controller="User" asp-action="Index">Users</a>
+                |
+                <a asp-area="" asp-controller="Line" asp-action="Index">Lines</a>
+                |
+                <a asp-area="" asp-controller="Train" asp-action="Index">Trains</a>
+                |
+                <form id="logoutForm" style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button class="underline-button" style="background: none; border: 0px solid white; color: #0366d6; font-weight: 500;" id="logout" type="submit"><a>Logout</a></button>
+                </form>
+            </h2>
+        </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <h2>
+                Home
+                |
+                <a asp-area="" asp-controller="Line" asp-action="Search">Search the Lines</a>
+                |
+                <a asp-area="" asp-controller="Reservation" asp-action="Index">My tickets</a>
+                |
+                <form id="logoutForm" style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button class="underline-button" style="background: none; border: 0px solid white; color: #0366d6; font-weight: 500;" id="logout" type="submit"><a>Logout</a></button>
+                </form>
+            </h2>
+        </div>
+    }
+}
+else
+{
+    <h2 class="text-center">
+        Home
+        |
+        <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+        |
+        <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </h2>
+}
+
+<p class="text-justify">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat, elit a convallis ultrices, velit magna sagittis leo, a ullamcorper dui metus ut eros. In placerat ultricies leo non consequat. Nunc fermentum, risus sit amet dictum bibendum, nunc lacus condimentum dui, a malesuada mi velit sed turpis. Cras interdum porta semper. Quisque hendrerit, elit vel fermentum sodales, mauris purus ultricies nibh, id dictum turpis nisl varius nisi. In suscipit risus nec convallis tristique. Nam vestibulum eros in egestas ullamcorper. Nunc viverra orci ut eros venenatis vehicula. Sed pellentesque viverra nibh sed pulvinar. Phasellus ac leo elit. Proin vitae hendrerit nibh.
+    <br />
+    Morbi convallis elementum porta. In metus erat, congue id velit sit amet, interdum placerat felis. Nulla rhoncus congue nibh at iaculis. Mauris convallis erat eget diam tempor, eu accumsan magna vestibulum. Pellentesque eros lorem, eleifend sit amet dolor at, faucibus interdum turpis. Integer velit nibh, tempor et nibh a, scelerisque eleifend mi. Phasellus feugiat ante vitae nibh lobortis, in porttitor leo varius. Phasellus sem nulla, ultricies et ipsum sit amet, commodo feugiat neque.
+    <br />
+    Etiam fermentum nec nunc non suscipit. Praesent id interdum arcu. Ut vel arcu porta, vulputate erat eget, semper ante. Vestibulum pharetra lobortis urna et elementum. Cras at scelerisque sem. Aenean enim arcu, ultricies vitae tortor at, sollicitudin porta ligula. Vivamus velit justo, finibus molestie rhoncus quis, hendrerit quis eros. Curabitur ultrices mauris orci, et aliquam eros auctor semper. Morbi tellus sapien, aliquet in scelerisque ut, egestas quis dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque semper neque vitae vulputate dapibus. Ut mattis ex tortor, et vehicula nulla malesuada nec. Cras consequat aliquam diam, vel bibendum odio maximus quis. Maecenas eros massa, sodales id eros a, aliquam consequat neque. Fusce risus erat, eleifend a pulvinar at, sollicitudin at nisi. Duis consequat, arcu id placerat condimentum, nisl justo viverra lorem, id blandit erat massa et enim.
+    <br />
+    Nam magna leo, tempor quis lacus id, vehicula cursus elit. Sed et hendrerit urna, non rhoncus lacus. Curabitur dignissim at lorem id suscipit. Nam sed sem porttitor, auctor ante at, mattis nulla. Quisque iaculis urna leo, quis molestie nibh consectetur ut. Ut sagittis odio at varius mattis. Nunc ut erat ipsum. Donec porttitor malesuada lectus ut ornare. Cras molestie enim quis convallis euismod. Sed malesuada sed turpis vel tincidunt. Suspendisse eu tincidunt lacus. Nulla vestibulum at lorem id sagittis. Sed pretium nunc at libero feugiat volutpat.
+    <br />
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris metus tellus, sollicitudin at cursus eget, egestas eu ante. Sed sed massa in erat faucibus laoreet. Suspendisse arcu augue, interdum luctus erat sed, sagittis scelerisque justo. Aenean neque ligula, ullamcorper et lectus eget, auctor pretium lacus. Sed lectus sem, hendrerit at turpis non, faucibus commodo nisl. Cras maximus, est vitae viverra ullamcorper, nunc odio varius nisl, eget tincidunt nulla sapien non risus. Mauris tincidunt ligula vel varius finibus. In mauris lorem, vehicula quis massa nec, iaculis bibendum dolor. Donec posuere enim nisl, et malesuada augue condimentum non. Quisque et sem scelerisque libero euismod suscipit in fringilla eros. Sed quis sapien mi. Proin a magna ultrices, tristique magna id, ultrices quam. Nam at augue ante. Donec tristique eu nibh eu convallis. Curabitur et faucibus ante.
+</p>
